@@ -4,6 +4,8 @@ import infoImg from '../../../../assets/img/bx-info-circle.svg'
 import closeImg from '../../../../assets/img/bx-x.svg'
 import { setInfo } from "../../../../reducers/fileReducer";
 import {deleteFile, downloadFile} from "../../../../actions/file";
+import deleteImg from "../../../../assets/img/bxs-trash-alt.svg"
+import downloadImg from "../../../../assets/img/bxs-download.svg"
 
 const Info = () => {
 
@@ -35,9 +37,9 @@ const Info = () => {
                         <img src={infoImg} draggable="false" alt="i" />
                         <div className="ml-3 text-lg font-semibold">{info.name}</div>
                     </div>
-                    <div className="flex">
-                        <button onClick={(e) => downloadClickHandler(e)} className='select-none'>Скачать</button>
-                        <button onClick={(e) => deleteClickHandler(e)} className='select-none'>Удалить</button>
+                    <div className="flex space-x-6 text-white/80">
+                        <button onClick={(e) => downloadClickHandler(e)} className='select-none hover:text-white flex'><img className="w-4 mr-1" src={downloadImg} alt=""/> Скачать</button>
+                        <button onClick={(e) => deleteClickHandler(e)} className='select-none hover:text-white flex items-center'><img className="w-4 mr-1" src={deleteImg} alt=""/> Удалить</button>
                         <button onClick={() => closeHandler()}><img src={closeImg} draggable="false" className="text-white" alt="x" /></button>
                     </div>
 
