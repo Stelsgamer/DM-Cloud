@@ -49,7 +49,6 @@ export const auth = () => {
             const response = await axios.get(`http://localhost:5000/api/auth/auth`, {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}})
 
             dispatch(setUser(response.data.user))
-            dispatch(hideLoader())
             localStorage.setItem('token', response.data.token)
     
         } catch (e) {

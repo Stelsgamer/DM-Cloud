@@ -5,7 +5,7 @@ const HIDE_LOADER = 'HIDE_LOADER'
 
 
 const defaultState = {
-    loader: false
+    loader: true
 }
 
 export default function appReducer(state = defaultState, action) {

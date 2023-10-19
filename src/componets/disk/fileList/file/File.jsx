@@ -4,7 +4,6 @@ import EmptydirLogo from '../../../../assets/img/emptyDir.svg'
 import fileLogo from '../../../../assets/img/file.svg'
 import { useDispatch, useSelector } from 'react-redux';
 import { pushToStack, setCurrentDir, setInfo } from '../../../../reducers/fileReducer';
-import { deleteFile, downloadFile } from '../../../../actions/file';
 import sizeFormat from '../../../../utils/sizeFormat';
 
 
@@ -48,27 +47,19 @@ const File = ({file}) => {
     }
 
 
-    function downloadClickHandler(e) {
-        e.stopPropagation()
-        downloadFile(file)
-    }
 
-    function deleteClickHandler(e) {
-        e.stopPropagation()
-        dispatch(deleteFile(file))
-    }
+
+
 
 
 
 
     return (
-        <div onClick={(e) => clickHandler(e)} className='grid grid-cols-6 mt-6 group mx-12 py-1 items-center hover:shadow-lg hover:bg-stone-100'>
+        <div onClick={(e) => clickHandler(e)} className='grid grid-cols-6 mt-6 mx-12 py-1 items-center hover:shadow-lg hover:bg-stone-100'>
             <img className="justify-self-center" draggable="false" src={file.type === 'dir' ? file.size === 0 ? EmptydirLogo:dirLogo : fileLogo} alt=''/>
             <div className='col-start-2 select-none truncate'>{file.name}</div>
-            <div className='col-start-5 select-none group-hover:col-start-3 justify-self-center'>{day+'.'+month+'.'+year}</div>
-            <div className='col-start-6 select-none group-hover:col-start-4 justify-self-center'>{sizeFormat(file.size)}</div>
-            {file.type !== 'dir' && <button onClick={(e) => downloadClickHandler(e)} className='hidden select-none group-hover:block col-start-5'>download</button>}
-            <button onClick={(e) => deleteClickHandler(e)} className='hidden select-none group-hover:block col-start-6'>delete</button>
+            <div className='col-start-5 select-none justify-self-center'>{day+'.'+month+'.'+year}</div>
+            <div className='col-start-6 select-none justify-self-center'>{sizeFormat(file.size)}</div>
         </div>
     );
 }

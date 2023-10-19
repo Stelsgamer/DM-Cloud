@@ -11,7 +11,7 @@ import Disk from "./disk/Disk";
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
   const dispatch = useDispatch()
-
+  const loader = useSelector(state => state.app.loader)
 
   useEffect( ()=> {
     
@@ -19,31 +19,32 @@ function App() {
 
   }, [])
 
-  return (
-    <BrowserRouter>
-        <div className="app bg-[#ebf0ff] min-h-screen">
-          <Navbar/>
-          {!isAuth ?
-          
-          <Routes>
-            <Route path="/registration" element={<Registration/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="*" element={<Navigate to="/login"/>}/>
-          </Routes>
-          :
 
-          <Routes>
-            <Route path="/login" element={<Navigate to="/"/>}/>
-            <Route path="/registration" element={<Navigate to="/"/>}/>
-            <Route path="*" element={<Disk/>}/>
-          </Routes>
-          
-          }
+    return (
+        <BrowserRouter>
+          <div className="app bg-[#ebf0ff] min-h-screen">
+            <Navbar/>
+            {!isAuth ?
+                <Routes>
+                  <Route path="/registration" element={<Registration/>}/>
+                  <Route path="/login" element={<Login/>}/>
+                  <Route path="*" element={<Navigate to="/login"/>}/>
+                </Routes>
+                :
 
-        </div>
-    </BrowserRouter>
+                <Routes>
+                  <Route path="/login" element={<Navigate to="/"/>}/>
+                  <Route path="/registration" element={<Navigate to="/"/>}/>
+                  <Route path="*" element={<Disk/>}/>
+                </Routes>
 
-  );
+            }
+
+          </div>
+        </BrowserRouter>
+    );
+
+
 }
 
 export default App;
