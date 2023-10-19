@@ -3,7 +3,7 @@ import { addFile, deleteFileAction, setFiles } from "../reducers/fileReducer";
 import { addUploadFile, changeUploadFile, showUploader } from "../reducers/uploadReducer";
 import { hideLoader, showLoader } from "../reducers/appReducer";
 import { logout } from "../reducers/userReducer";
-import { useDispatch } from "react-redux";
+
 
 
 export function getFiles(dirId, sort) {

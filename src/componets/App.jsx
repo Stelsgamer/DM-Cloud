@@ -11,7 +11,6 @@ import Disk from "./disk/Disk";
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
   const dispatch = useDispatch()
-  const loader = useSelector(state => state.app.loader)
 
   useEffect( ()=> {
     
