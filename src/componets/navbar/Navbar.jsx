@@ -46,10 +46,10 @@ function Navbar() {
             <div className="flex items-center h-16 justify-between mx-8">
 
 
-                <nav className='font-bold text-xl'><NavLink onClick={() => {goHome()}} className="flex items-center"><img src={logo} alt="Logo" className='h-12 mr-4' />ASM Cloud</NavLink></nav>
+                <nav className='font-bold text-xl'><NavLink onClick={() => {goHome()}} to={"/"} className="flex items-center"><img src={logo} alt="Logo" className='h-12 mr-4' />ASM Cloud</NavLink></nav>
 
                 <div className="space-x-8 my-auto flex items-center">
-                    {!isAuth && <nav className='font-semibold text-lg'><NavLink to="/login">Войти</NavLink></nav>}
+                    {!isAuth && <nav className='font-semibold text-lg'><NavLink to={"/login"}>Войти</NavLink></nav>}
                     {/* {!isAuth &&<nav className='font-semibold text-lg'><NavLink to="/registration">Регистрация</NavLink></nav>} */}
                     {isAuth && <div><input type="text"
                                            value={searchName}
