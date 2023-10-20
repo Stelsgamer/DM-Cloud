@@ -31,16 +31,12 @@ const File = ({file}) => {
                     dispatch(pushToStack({currentDir, name: file.name}))
                     dispatch(setInfo(''))
                     dispatch(setCurrentDir(file._id))
+                }else if(file.type !== 'dir') {
+                    dispatch(setInfo(file))
                 }
 
                 break;
             default:
-                
-                if(file.type === 'dir') {
-                    dispatch(pushToStack({currentDir, name: file.name}))
-                    dispatch(setInfo(''))
-                    dispatch(setCurrentDir(file._id))
-                }
                 break;
             }
         
@@ -55,7 +51,7 @@ const File = ({file}) => {
 
 
     return (
-        <div onClick={(e) => clickHandler(e)} className='grid grid-cols-6 mt-6 mx-12 py-1 items-center hover:shadow-lg hover:bg-stone-100'>
+        <div onClick={(e) => clickHandler(e)} className='grid rounded-lg grid-cols-6 mx-12 py-1 items-center hover:bg-stone-100'>
             <img className="justify-self-center" draggable="false" src={file.type === 'dir' ? file.size === 0 ? EmptydirLogo:dirLogo : fileLogo} alt=''/>
             <div className='col-start-2 select-none truncate'>{file.name}</div>
             <div className='col-start-5 select-none justify-self-center'>{day+'.'+month+'.'+year}</div>

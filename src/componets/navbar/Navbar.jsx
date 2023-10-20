@@ -3,7 +3,7 @@ import logo from '../../assets/img/logo.svg'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
-import { clearStack, setCurrentDir } from '../../reducers/fileReducer';
+import {clearStack, setCurrentDir, setInfo} from '../../reducers/fileReducer';
 import { getFiles, searchFiles } from '../../actions/file';
 import { showLoader } from '../../reducers/appReducer';
 
@@ -19,6 +19,7 @@ function Navbar() {
 
     const goHome = () => {
         dispatch(clearStack())
+        dispatch(setInfo(""))
         dispatch(setCurrentDir(null))
     }
 
@@ -47,10 +48,15 @@ function Navbar() {
 
                 <nav className='font-bold text-xl'><NavLink onClick={() => {goHome()}} className="flex items-center"><img src={logo} alt="Logo" className='h-12 mr-4' />ASM Cloud</NavLink></nav>
 
-                <div className="space-x-8 my-auto flex">
+                <div className="space-x-8 my-auto flex items-center">
                     {!isAuth && <nav className='font-semibold text-lg'><NavLink to="/login">Войти</NavLink></nav>}
                     {/* {!isAuth &&<nav className='font-semibold text-lg'><NavLink to="/registration">Регистрация</NavLink></nav>} */}
-                    {isAuth && <div><input type="text" value={searchName} onChange={(e) => setSearchChangeHandler(e)} placeholder="Найти в диске" className="" /></div>}
+                    {isAuth && <div><input type="text"
+                                           value={searchName}
+                                           onChange={(e) => setSearchChangeHandler(e)}
+                                           placeholder="Найти в диске"
+                                           className="p-2 rounded-lg"
+                    /></div>}
                     {isAuth && <nav className='font-semibold text-lg cursor-pointer' onClick={() => dispatch(logout())}>Выход</nav>}
 
                 </div>

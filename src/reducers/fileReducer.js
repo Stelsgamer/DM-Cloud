@@ -14,7 +14,7 @@ const defaultState = {
   popupDisplay: 'none',
   info: '',
   dirStack: [],
-  sort: {type: 'type', name: "типу"}
+  sort: {type: 'name', name: "имени"}
 }
 
 export default function fileReducer(state = defaultState, action) {
@@ -41,7 +41,7 @@ export const setFiles = (files) => ({type: SET_FILES, payload: files})
 export const setCurrentDir = (dir) => ({type: SET_CURRENT_DIR, payload: dir})
 export const addFile = (file) => ({type: ADD_FILE, payload: file})
 export const setPopupDisplay = (display) => ({type: SET_POPUP_DISPLAY, payload: display})
-export const setInfo = (display) => ({type: SET_INFO, payload: display})
+export const setInfo = (info) => ({type: SET_INFO, payload: info})
 export const setSort = (sort) => ({type: SET_SORT, payload: sort})
 export const pushToStack = (dir) => ({type: PUSH_TO_STACK, payload: dir})
 export const deleteFileAction = (dirId) => ({type: DELETE_FILE, payload: dirId})
