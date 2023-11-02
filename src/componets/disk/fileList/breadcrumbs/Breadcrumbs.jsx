@@ -6,14 +6,19 @@ import Crumbs from "./crumbs/Crumbs";
 
 const Breadcrumbs = () => {
     const dirStack = useSelector((state) => state.files.dirStack)
+    const lastCrumb = dirStack.pop()
 
     return ( 
-                    
+
+
+
+
         dirStack.length >= 1 ?
             <div className=' pl-12 pt-6'>
-                {/* {breadcrumps.join(" > ")} */}
                 <div className="flex">
-                    {dirStack.map((crumb, i) => <Crumbs name={crumb.name} currentDir={crumb.currentDir} pos={i} key={i}/>)} 
+                    <Crumbs name="Файлы" currentDir={null} pos={0} key={0}/>
+                    {dirStack.map((crumb, i) => <Crumbs name={crumb.name} currentDir={crumb.currentDir} pos={i} key={i}/>)}
+                    <Crumbs name{...lastCrumb.name} />
                 </div>
             </div>
             :

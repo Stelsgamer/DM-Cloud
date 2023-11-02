@@ -55,7 +55,7 @@ const File = ({file}) => {
             <img className="justify-self-center" draggable="false" src={file.type === 'dir' ? file.size === 0 ? EmptydirLogo:dirLogo : fileLogo} alt=''/>
             <div className='col-start-2 select-none truncate'>{file.name}</div>
             <div className='col-start-5 select-none justify-self-center'>{day+'.'+month+'.'+year}</div>
-            <div className='col-start-6 select-none justify-self-center'>{sizeFormat(file.size)}</div>
+            <div className='col-start-6 select-none justify-self-center' style={file.type === 'dir' ? {"display": "none"} : {}}>{sizeFormat(file.size)}</div>
         </div>
     );
 }

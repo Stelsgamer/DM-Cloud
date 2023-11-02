@@ -1,19 +1,22 @@
-import axios from 'axios'
-import { logout, setUser } from '../reducers/userReducer'
-import { hideLoader } from '../reducers/appReducer'
+
+import api from '../http/index'
+import { setUser } from '../reducers/userReducer'
+import axios from "axios";
+import {setLoader} from "../reducers/appReducer";
 
 export const registration = (email, password) => {
 
     return async dispatch => {
         try {
-            await axios.post(`http://localhost:5000/api/auth/registration`, {
-                email,
-                password
-            })
-            
-            dispatch(login(email, password))
+            const response = await api.post(
+                "auth/registration",
+                { email, password }
+            )
+
+            dispatch(setUser(response.data.user))
+            localStorage.setItem('token', response.data.accessToken)
         } catch (e) {
-            alert(e.response.data.message)
+            alert(e.response?.data?.message)
         }
     }
 }
@@ -25,16 +28,16 @@ export const login = (email, password) => {
 
     return async dispatch => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/auth/login`, {
-                email,
-                password
-            })
-
+            const response = await api.post(
+                "auth/login",
+                { email, password }
+            )
             dispatch(setUser(response.data.user))
-            localStorage.setItem('token', response.data.token)
-    
+            localStorage.setItem('token', response.data.accessToken)
+
+
         } catch (e) {
-            alert(e.response.data.message)
+            alert(e.response?.data?.message)
         }
     
     }
@@ -42,21 +45,22 @@ export const login = (email, password) => {
 
 }
 
-export const auth = () => {
-
+export const checkAuth = () => {
     return async dispatch => {
-        try {
-            const response = await axios.get(`http://localhost:5000/api/auth/auth`, {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}})
-
+        try{
+            const response = await axios.get(
+                `${process.env.REACT_APP_API_URL}/auth/refresh`,
+                {withCredentials: true})
             dispatch(setUser(response.data.user))
-            localStorage.setItem('token', response.data.token)
-    
-        } catch (e) {
-            localStorage.removeItem('token')
-            dispatch(logout())
-        } finally{
-            dispatch(hideLoader())
+            localStorage.setItem('token', response.data.accessToken)
 
+        }catch(e) {
+            alert(e.response?.data?.message)
+        }finally {
+            dispatch(setLoader(false))
         }
     }
+
+
 }
+

@@ -5,19 +5,31 @@ import Navbar from "./navbar/Navbar";
 import Registration from "./registration/Registration";
 import Login from "./login/Login";
 import { useDispatch, useSelector } from "react-redux";
-import { auth } from "../actions/user";
 import Disk from "./disk/Disk";
+import {checkAuth} from "../actions/user";
+import {setLoader} from "../reducers/appReducer";
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
+  const isActivated = useSelector(state => state.user.currentUser.isActivated)
   const dispatch = useDispatch()
 
-  useEffect( ()=> {
-    
-    dispatch(auth())
 
+    useEffect( ()=> {
+      if (localStorage.getItem('token')){
+          dispatch(checkAuth())
+      }else{
+          dispatch(setLoader(false))
+      }
   }, [])
 
+
+
+    if(!isActivated && isAuth){
+        return (
+            <div>Активируйся</div>
+        )
+    }
 
     return (
         <BrowserRouter>
@@ -30,7 +42,6 @@ function App() {
                   <Route path="*" element={<Navigate to="/login"/>}/>
                 </Routes>
                 :
-
                 <Routes>
                   <Route path="/login" element={<Navigate to="/"/>}/>
                   <Route path="/registration" element={<Navigate to="/"/>}/>

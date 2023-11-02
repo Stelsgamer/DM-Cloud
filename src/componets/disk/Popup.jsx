@@ -20,7 +20,7 @@ const Popup = () => {
         
 
         dispatch(createDir(currentDir, dirName.replace(/[^a-zа-яё\s?,.-_)]/gi, '')))
-        setDirName('')
+        setDirName('Новая папка')
         dispatch(setPopupDisplay('none'))
     }
 

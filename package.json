@@ -27,7 +27,7 @@
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build"
   },
-  "homepage": "https://stelsgamer.github.io/ASMCloud/",
+  "homepage": "https://stelsgamer.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",
