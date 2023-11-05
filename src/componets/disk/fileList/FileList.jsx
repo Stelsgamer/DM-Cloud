@@ -11,7 +11,7 @@ const FileList = () => {
 
   return (
     <div className="bg-white h-full overflow-y-auto rounded-r-2xl">
-      <Breadcrumbs />
+      {/*<Breadcrumbs />*/}
       <SubNav />
       {
         loader === true ? 

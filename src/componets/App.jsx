@@ -6,8 +6,9 @@ import Registration from "./registration/Registration";
 import Login from "./login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import Disk from "./disk/Disk";
-import {checkAuth} from "../actions/user";
+import {checkAuth, sendActivateEmail} from "../actions/user";
 import {setLoader} from "../reducers/appReducer";
+import Activate from "./activate/Activate";
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
@@ -27,13 +28,15 @@ function App() {
 
     if(!isActivated && isAuth){
         return (
-            <div>Активируйся</div>
+            <div className="min-h-screen">
+                <Activate/>
+            </div>
         )
     }
 
     return (
         <BrowserRouter>
-          <div className="app bg-[#ebf0ff] min-h-screen">
+          <div className="bg-[#ebf0ff] min-h-screen">
             <Navbar/>
             {!isAuth ?
                 <Routes>

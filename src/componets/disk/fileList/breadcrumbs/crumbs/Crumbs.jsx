@@ -14,12 +14,7 @@ function Crumbs(props) {
         const steps = dirStack.length - props.pos
 
 
-        if(steps > 0){
-            for (let i = 0; i < steps; i++) {
-                dirStack.pop()
-            }
-            dispatch(setCurrentDir(props.currentDir))
-        }
+
     }
 
     return (

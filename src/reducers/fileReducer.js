@@ -26,6 +26,8 @@ export default function fileReducer(state = defaultState, action) {
     case SET_INFO: return {...state, info: action.payload}
     case SET_SORT: return {...state, sort: action.payload}
     case PUSH_TO_STACK: return {...state, dirStack: [...state.dirStack, action.payload]}
+
+
     case CLEAR_STACK: return {...state, dirStack: []}
     case DELETE_FILE: return {...state, files: [...state.files.filter(file => file._id !== action.payload)]}
 
@@ -43,7 +45,7 @@ export const addFile = (file) => ({type: ADD_FILE, payload: file})
 export const setPopupDisplay = (display) => ({type: SET_POPUP_DISPLAY, payload: display})
 export const setInfo = (info) => ({type: SET_INFO, payload: info})
 export const setSort = (sort) => ({type: SET_SORT, payload: sort})
-export const pushToStack = (dir) => ({type: PUSH_TO_STACK, payload: dir})
+export const pushToStack = (dirStack) => ({type: PUSH_TO_STACK, payload: dirStack})
 export const deleteFileAction = (dirId) => ({type: DELETE_FILE, payload: dirId})
 export const clearStack = () => ({type: CLEAR_STACK})
 

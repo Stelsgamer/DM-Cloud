@@ -55,11 +55,21 @@ export const checkAuth = () => {
             localStorage.setItem('token', response.data.accessToken)
 
         }catch(e) {
-            alert(e.response?.data?.message)
+            console.log(e.response.data.message)
         }finally {
             dispatch(setLoader(false))
         }
     }
+}
+
+export const sendActivateEmail = async () => {
+
+        try {
+            const response = await api.get("auth/sendmail")
+            alert(response.data.message)
+        }catch(e){
+
+        }
 
 
 }
