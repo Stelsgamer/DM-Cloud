@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentDir } from '../../../../../reducers/fileReducer';
+import {clearStack, setCurrentDir, setInfo} from '../../../../../reducers/fileReducer';
 import chevron from '../../../../../assets/img/bx-chevron-right.svg'
 
 function Crumbs(props) {
@@ -11,10 +11,26 @@ function Crumbs(props) {
 
     function openDirHandler(event) {
         event.preventDefault()
-        const steps = dirStack.length - props.pos
 
+        if(props.currentDir === null){
+                dispatch(clearStack())
+                dispatch(setInfo(""))
+                dispatch(setCurrentDir(null))
+            return
+        }
 
+        let steps = dirStack.length - props.pos
 
+        if (dirStack.length !== 1){
+            steps--
+        }
+
+        if(steps > 0){
+            for (let i = 0; i < steps; i++) {
+                dirStack.pop()
+            }
+            dispatch(setCurrentDir(props.currentDir))
+        }
     }
 
     return (
